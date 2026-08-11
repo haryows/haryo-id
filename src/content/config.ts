@@ -7,8 +7,9 @@ const blog = defineCollection({
     description: z.string(),
     date: z.date(),
     category: z.string(),
-    // Full URL to the image on your Cloudflare R2 public bucket / custom domain,
-    // e.g. https://media.haryo.id/posts/security-headers.png
+    // Path to the image inside the public/images folder,
+    // e.g. /images/security-headers-cover.png
+    // (Full URLs also work if you later switch to R2 or another host.)
     image: z.string().optional(),
     draft: z.boolean().optional().default(false),
   }),

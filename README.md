@@ -31,7 +31,7 @@ title: "Judul Post"
 description: "Ringkasan singkat untuk SEO/preview."
 date: 2026-08-01
 category: "Linux Server"
-image: "https://media.haryo.id/posts/nama-gambar.png"   # opsional
+image: "/images/nama-gambar.png"   # opsional
 ---
 
 Isi tulisan pakai Markdown biasa.
@@ -39,14 +39,18 @@ Isi tulisan pakai Markdown biasa.
 
 Nama file jadi bagian dari URL: `nama-slug-kamu.md` → `/blog/nama-slug-kamu/`
 
-## 3. Setup Cloudflare R2 untuk gambar
+## 3. Menambahkan gambar
 
-1. Di dashboard Cloudflare → **R2** → **Create bucket**, misal nama `haryo-media`.
-2. Di tab **Settings** bucket → **Public access** → aktifkan lewat **custom domain**, contoh: `media.haryo.id` (karena domain haryo.id sudah ada di akun Cloudflare-mu, ini tinggal beberapa klik, tanpa perlu ubah nameserver lagi).
-3. Upload gambar ke bucket (lewat dashboard, atau nanti pakai `wrangler` CLI / rclone kalau mau otomatis).
-4. Pakai URL `https://media.haryo.id/nama-file.png` di frontmatter `image:` atau langsung di isi Markdown post.
+Karena setup R2 butuh kartu debit/kredit terdaftar di Cloudflare, untuk sekarang gambar disimpan **langsung di dalam project ini** — gratis, tanpa kartu apa pun, dan otomatis ikut ter-deploy oleh Cloudflare Pages.
 
-Free tier R2: 10 GB storage/bulan, dan **tidak ada biaya egress** — jauh cukup untuk gambar blog personal.
+1. Taruh file gambar (jpg/png/webp) ke folder `public/images/`. Contoh: `public/images/security-headers-cover.png`
+2. Pakai di frontmatter post: `image: "/images/security-headers-cover.png"`
+3. Atau langsung di isi Markdown: `![Deskripsi gambar](/images/nama-file.png)`
+4. `git add .`, `git commit -m "tambah gambar"`, `git push` seperti biasa — Cloudflare otomatis build ulang.
+
+Batas: maksimal 25MB per file gambar, dan total 20.000 file di seluruh situs (paket Free Cloudflare Pages) — jauh lebih dari cukup untuk blog personal.
+
+> Nanti kalau kamu sudah punya kartu debit/kredit dan mau pindah ke Cloudflare R2 (misalnya karena gambar/video makin banyak), cukup ganti path gambar dari `/images/nama-file.png` menjadi URL penuh seperti `https://media.haryo.id/nama-file.png` — tidak perlu ubah struktur project lainnya.
 
 ## 4. Deploy ke Cloudflare Pages
 
