@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryIcon from '../../components/CategoryIcon.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -19,7 +20,7 @@ function fmt(d: Date) {
     {posts.map(post => (
       <a class="log-entry" href={`/blog/${post.slug}/`}>
         <span class="ts">{fmt(post.data.date)}</span>
-        <span class="log-tag">{post.data.category}</span>
+        <span class="log-tag"><CategoryIcon category={post.data.category} />{post.data.category}</span>
         <span class="title">{post.data.title}</span>
       </a>
     ))}

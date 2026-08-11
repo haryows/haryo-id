@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryIcon from '../../components/CategoryIcon.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -20,7 +21,7 @@ function fmt(d: Date) {
 <BaseLayout title={`${post.data.title} - Haryo Sudarman`} description={post.data.description}>
   <article>
     <div class="post-head">
-      <p class="post-meta">{fmt(post.data.date)} · {post.data.category}</p>
+      <p class="post-meta"><CategoryIcon category={post.data.category} size={13} /> {fmt(post.data.date)} · {post.data.category}</p>
       <h1>{post.data.title}</h1>
     </div>
     {post.data.image && <img class="post-cover" src={post.data.image} alt={post.data.title} />}
