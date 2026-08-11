@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+
+const categories = [...new Set(posts.map(p => p.data.category))];
+
+function fmt(d: Date) {
+  return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+<BaseLayout title="Haryo Sudarman - Technical Notes and Daily Experiences">
+  <section class="hero">
+    <p class="prompt">~ $ whoami</p>
+    <h1>Hai, saya Haryo Sudarman 👋</h1>
+    <p>
+      Tempat menyimpan catatan, pengalaman, opini, dan hal-hal yang saya pelajari
+      setiap hari — dari dokumentasi teknis dan eksperimen, sampai hal-hal sederhana
+      yang ingin saya ingat dan bagikan.
+    </p>
+    <a class="more" href="/about/">Lebih lanjut tentang saya →</a>
+  </section>
+
+  <div class="section-label">
+    <h2>Tulisan Terbaru</h2>
+    <a href="/blog/">Lihat semua →</a>
+  </div>
+
+  <div class="log-list">
+    {posts.length === 0 && (
+      <p style="color: var(--muted); padding: 20px 0;">Belum ada tulisan. Tambahkan file .md pertama di src/content/blog/.</p>
+    )}
+    {posts.map(post => (
+      <a class="log-entry" href={`/blog/${post.slug}/`}>
+        <span class="ts">{fmt(post.data.date)}</span>
+        <span class="log-tag">{post.data.category}</span>
+        <span class="title">{post.data.title}</span>
+      </a>
+    ))}
+  </div>
+
+  {categories.length > 0 && (
+    <>
+      <div class="section-label">
+        <h2>Kategori</h2>
+      </div>
+      <div class="cat-list">
+        {categories.map(cat => (
+          <a class="cat-pill" href={`/category/${cat.toLowerCase()}/`}>{cat}</a>
+        ))}
+      </div>
+    </>
+  )}
+</BaseLayout>

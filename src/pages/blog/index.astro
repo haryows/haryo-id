@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function fmt(d: Date) {
+  return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+<BaseLayout title="Semua Tulisan - Haryo Sudarman">
+  <section class="hero" style="padding-bottom: 10px;">
+    <p class="prompt">~ $ ls ./tulisan</p>
+    <h1>Semua Tulisan</h1>
+  </section>
+
+  <div class="log-list">
+    {posts.map(post => (
+      <a class="log-entry" href={`/blog/${post.slug}/`}>
+        <span class="ts">{fmt(post.data.date)}</span>
+        <span class="log-tag">{post.data.category}</span>
+        <span class="title">{post.data.title}</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

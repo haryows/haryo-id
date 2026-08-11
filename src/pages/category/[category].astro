@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const categories = [...new Set(posts.map(p => p.data.category.toLowerCase()))];
+  return categories.map(category => ({
+    params: { category },
+    props: { posts: posts.filter(p => p.data.category.toLowerCase() === category) },
+  }));
+}
+
+const { category } = Astro.params;
+const { posts } = Astro.props;
+const sorted = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function fmt(d: Date) {
+  return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+<BaseLayout title={`Kategori: ${category} - Haryo Sudarman`}>
+  <section class="hero" style="padding-bottom: 10px;">
+    <p class="prompt">~ $ ls ./tulisan --filter={category}</p>
+    <h1>Kategori: {category}</h1>
+  </section>
+
+  <div class="log-list">
+    {sorted.map(post => (
+      <a class="log-entry" href={`/blog/${post.slug}/`}>
+        <span class="ts">{fmt(post.data.date)}</span>
+        <span class="log-tag">{post.data.category}</span>
+        <span class="title">{post.data.title}</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
