@@ -114,3 +114,5 @@ Metode manual ini sederhana, gratis, dan — yang paling penting — **formatnya
 Satu pesan penutup dari pengalaman: **jangan tunggu ada masalah baru mulai backup.** Lima menit sekarang menghemat hari-hari regret nanti.
 
 Kalau ada langkah yang bikin bingung, atau kasus kamu lebih kompleks (migrasi antar-provider, misalnya), tinggal hubungi saya lewat [halaman kontak](/contact/).
+
+> **Disclaimer:** Tutorial di blog ini adalah catatan pengalaman pribadi, bukan dokumentasi resmi. Sebelum menjalankan backup/restore di server produksi, pahami dulu langkahnya — *do it with your own risk* — dan pastikan kamu sudah punya salinan cadangan sebelum eksperimen.

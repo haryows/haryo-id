@@ -116,3 +116,5 @@ Dengan pola seperti ini, kamu mendapat proteksi XSS yang kuat tanpa drama "kok t
 Enam header, satu rule Cloudflare, nol baris kode server — dan nilai securityheaders.com kamu naik dari F ke A. Perubahannya mungkin tidak terlihat mata, tapi jarak antara website yang "biasa jalan" dan website yang punya lapisan pertahanan dasar justru ada di detail seperti ini.
 
 Kalau ada pertanyaan atau mau berdiskusi soal implementasi CSP yang lebih spesifik, silakan mampir ke [halaman kontak](/contact/) saya.
+
+> **Disclaimer:** Tutorial di blog ini adalah catatan pengalaman pribadi, bukan dokumentasi resmi. Konfigurasi dan penggunaannya cukup ikuti dengan kesadaran penuh — *do it with your own risk* — karena setiap lingkungan server bisa berbeda.
