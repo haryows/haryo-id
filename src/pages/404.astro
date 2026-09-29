@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="404 - Halaman Tidak Ditemukan">
+  <section class="hero" style="padding-bottom: 20px;">
+    <p class="prompt">~ $ curl https://haryo.id<span id="path"></span></p>
+    <h1 style="font-size: clamp(1.5rem, 4vw, 2rem);">command not found</h1>
+    <p>
+      Halaman yang kamu cari tidak ada — mungkin sudah dipindah, dihapus,
+      atau alamatnya salah ketik. Coba kembali ke halaman utama.
+    </p>
+    <a class="more" href="/">~ $ cd / ← kembali ke home</a>
+  </section>
+  <script is:inline>
+    document.getElementById('path').textContent = window.location.pathname;
+  </script>
+</BaseLayout>

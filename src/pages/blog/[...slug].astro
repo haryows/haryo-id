@@ -18,7 +18,7 @@ function fmt(d: Date) {
   return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 ---
-<BaseLayout title={`${post.data.title} - Haryo Sudarman`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} - Haryo Sudarman`} description={post.data.description} image={post.data.image}>
   <article>
     <div class="post-head">
       <p class="post-meta"><CategoryIcon category={post.data.category} size={13} /> {fmt(post.data.date)} · {post.data.category}</p>
