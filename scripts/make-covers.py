@@ -108,3 +108,15 @@ if __name__ == "__main__":
         ],
         "email backup",
     )
+    make_cover(
+        "/root/haryo-id/public/images/spamexpert-exchange-cover.png",
+        "New-SendConnector -SmartHosts smtp.antispamcloud.com",
+        [
+            ("AddressSpaces        : {*}", muted),
+            ("SmartHostAuthMechanism : BasicAuth", muted),
+            ("MX  10 mx.spamexperts.com", muted),
+            ("relay: exchange -> spamexpert -> internet", muted),
+            ("# mail flow OK", accent),
+        ],
+        "spamexpert x exchange",
+    )
