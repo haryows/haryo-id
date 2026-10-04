@@ -120,3 +120,15 @@ if __name__ == "__main__":
         ],
         "spamexpert x exchange",
     )
+    make_cover(
+        "/root/haryo-id/public/images/fstab-emergency-mode-cover.png",
+        "systemctl status dev-mapper-vg\\x2dold.device",
+        [
+            ("You are in emergency mode...", muted),
+            ("Timed out waiting for device /dev/mapper/vg-old", muted),
+            ("nano /etc/fstab   # hapus/komen entry lama", muted),
+            ("systemctl reboot", muted),
+            ("# boot normal kembali", accent),
+        ],
+        "emergency mode fstab",
+    )
