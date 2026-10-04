@@ -1,7 +1,7 @@
 ---
 title: "Cara Mengatasi Emergency Mode Linux karena Entry fstab Lama"
 description: "VM Linux nyangkut di emergency mode setelah detach disk? Penyebabnya entry fstab lama yang lupa dihapus. Ini cara identifikasi, fix, dan pencegahan dengan nofail."
-date: 2026-10-03
+date: 2026-10-04
 category: "Linux"
 image: "/images/fstab-emergency-mode-cover.png"
 ---
