@@ -1,6 +1,6 @@
 ---
-title: "VM Linux Masuk Emergency Mode karena Entry fstab Lama Belum Dihapus"
-description: "Detach disk tapi lupa hapus entry-nya di /etc/fstab? VM Linux kamu bakal menolak boot dan nyangkut di emergency mode. Ini cara identifikasi dan fix-nya, plus tips pencegahan pakai opsi nofail."
+title: "Cara Mengatasi Emergency Mode Linux karena Entry fstab Lama"
+description: "VM Linux nyangkut di emergency mode setelah detach disk? Penyebabnya entry fstab lama yang lupa dihapus. Ini cara identifikasi, fix, dan pencegahan dengan nofail."
 date: 2026-10-03
 category: "Linux"
 image: "/images/fstab-emergency-mode-cover.png"
