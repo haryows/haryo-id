@@ -67,14 +67,16 @@ journalctl -xb
 Lalu cari error yang merujuk ke device yang gagal. Di case saya ketemu ini:
 
 ```
-systemd[1]: dev-mapper-vg\x2dlapiold\x2dvol\x2dlapiold.device: Job ... start timed out.
-systemd[1]: Timed out waiting for device /dev/mapper/vg--lapiold-vol--lapiold.
-systemd[1]: dev-mapper-vg\x2dlapiold\x2dvol\x2dlapiold.device: Job ... failed with result 'timeout'.
+systemd[1]: dev-mapper-vg\x2d\x2dvol\x2d\x2dold.device: Job ... start timed out.
+systemd[1]: Timed out waiting for device /dev/mapper/vg--vol--old.
+systemd[1]: dev-mapper-vg\x2d\x2dvol\x2d\x2dold.device: Job ... failed with result 'timeout'.
 ```
 
-![Error journalctl merujuk ke device lapiold](/images/fstab-emergency/step3.png)
+*(nama device di screenshot saya samarkan jadi generik — di case asli namanya berbeda)*
 
-Nah, `lapiold` ini nama volume LVM lama yang sudah di-detach. `\x2d` itu cuma escape systemd untuk karakter `-` (tanda hubung), jadi jangan bingung bacanya.
+![Error journalctl merujuk ke device lama](/images/fstab-emergency/step3.png)
+
+Nah, device `vol--old` ini nama volume LVM lama yang sudah di-detach. `\x2d` itu cuma escape systemd untuk karakter `-` (tanda hubung), jadi jangan bingung bacanya.
 
 ### 3. Konfirmasi bahwa device-nya memang sudah tidak ada
 
@@ -89,10 +91,10 @@ lsblk            # untuk melihat semua block device
 Di case saya, fstab masih memuat baris:
 
 ```
-/dev/mapper/vg--lapiold-vol--lapiold    /datalama    ext4    rw,relatime    0    0
+/dev/mapper/vg--vol--old    /datalama    ext4    rw,relatime    0    0
 ```
 
-...tapi `lvdisplay` dan `lsblk` tidak lagi menunjukkan volume `lapiold`. Valid — ini memang sisa konfigurasi lama.
+...tapi `lvdisplay` dan `lsblk` tidak lagi menunjukkan volume tersebut. Valid — ini memang sisa konfigurasi lama.
 
 ![Entry fstab yang menunjuk volume lama](/images/fstab-emergency/step4.png)
 
